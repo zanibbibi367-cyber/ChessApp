@@ -54,6 +54,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Chess Server is running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Chess Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
+
